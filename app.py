@@ -1,7 +1,7 @@
 # se referencia a flask
 from asyncio.windows_events import NULL
 from multiprocessing import connection
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify, render_template
 # se referencia psycopg2 para postgre sql
 from psycopg2 import connect, extras
 # se referencia cryptography para evitar que la contraseña sea leída
@@ -105,7 +105,12 @@ def updateUsers(id):
 # se agrega la ruta principal de la aplicación para el frontend
 @app.get('/')
 def home():
-    return send_file('static/index.html')
+    return render_template('index.html')
+
+# se agrega la ruta que ayudará a visualizar los datos
+@app.get('/data')
+def data():
+    return render_template('datosDB.html')
 
 # se inicializa la aplicación
 if __name__ == '__main__':

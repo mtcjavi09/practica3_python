@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block content %}
+<div style="padding: 0% 23%">
+    <h2>Ingresa un usuario</h2>
+    <form id="userForm" class="card card-body text-white" style="background-color:blueviolet">
+        <label for="username">Usuario</label>
+        <input type="text" name="username" placeholder="Ingresa un nombre de usuario" class="form-control mb-2"
+            required>
+        <label for="email">Email</label>
+        <input type="email" name="email" placeholder="email@hostname.com" class="form-control mb-2"
+            required>
+        <label for="password">Contraseña</label>
+        <input type="password" name="password" placeholder="**********" class="form-control mb-2"
+            required>
+        <button class="btn btn-dark">Guardar usuario</button>
+    </form>
+</div>
+{% endblock %}
