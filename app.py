@@ -6,18 +6,24 @@ from flask import Flask, request, jsonify, render_template
 from psycopg2 import connect, extras
 # se referencia cryptography para evitar que la contraseña sea leída
 from cryptography.fernet import Fernet
+# se referencia a dotenv para leer el archivo .env
+from dotenv import load_dotenv
+# se referencia a os para leer el contenido del archivo .env
+from os import environ
 
+# se lee el archivo .env
+load_dotenv()
 # se agrega la variable para la aplicación
 app = Flask(__name__)
 # se genera una clave para cifrar la contraseña
 key = Fernet.generate_key()
 
 # se agregan los datos de la base de datos
-host = 'ec2-34-230-153-41.compute-1.amazonaws.com'
-port = 5432
-dbname = 'daads17to2qqm5'
-user = 'dstunsoypdpdpn'
-password = 'cbb5e68b3caffdb4b5dcfb015ea18957192c8c55560188602e666ddf3e881705'
+host = environ.get('DB_HOST')
+port = environ.get('DB_PORT')
+dbname = environ.get('DB_NAME')
+user = environ.get('DB_USER')
+password = environ.get('DB_PASSWORD')
 
 # se conecta a la base de datos, creando una función para reutilizar esta base de datos en varias funciones
 def getConnection():
