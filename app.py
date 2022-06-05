@@ -43,7 +43,7 @@ def getUsers():
 def getUser(id):
     connection = getConnection()
     cursor = connection.cursor(cursor_factory=extras.RealDictCursor)
-    cursor.execute("SELECT * FROM users WHERE id = %s", (id))
+    cursor.execute("SELECT * FROM users WHERE id = %s", (id, ))
     usuario = cursor.fetchone()
     if usuario is None:
         return jsonify({'message': 'Usuario no encontrado'}), 404
@@ -74,7 +74,7 @@ def createUsers():
 def deleteUser(id):
     connection = getConnection()
     cursor = connection.cursor(cursor_factory=extras.RealDictCursor)
-    cursor.execute("DELETE FROM users WHERE id = %s RETURNING *", (id))
+    cursor.execute("DELETE FROM users WHERE id = %s RETURNING *", (id, ))
     usuario = cursor.fetchone()
     connection.commit()
     if usuario is None:
@@ -105,12 +105,7 @@ def updateUsers(id):
 # se agrega la ruta principal de la aplicación para el frontend
 @app.get('/')
 def home():
-    return render_template('index.html')
-
-# se agrega la ruta que ayudará a visualizar los datos
-@app.get('/data')
-def data():
-    return render_template('datosDB.html')
+    return render_template('main.html')
 
 # se inicializa la aplicación
 if __name__ == '__main__':
