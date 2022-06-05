@@ -115,7 +115,7 @@ def updateUsers(id):
 
 @app.get('/')
 def home():
-    return render_template('main.html')
+    return render_template('index.html')
 
 
 # se inicializa la aplicación
