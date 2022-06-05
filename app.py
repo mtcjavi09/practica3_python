@@ -20,8 +20,6 @@ user = 'dstunsoypdpdpn'
 password = 'cbb5e68b3caffdb4b5dcfb015ea18957192c8c55560188602e666ddf3e881705'
 
 # se conecta a la base de datos, creando una función para reutilizar esta base de datos en varias funciones
-
-
 def getConnection():
     connection = connect(host=host, port=port, dbname=dbname,
                          user=user, password=password)
