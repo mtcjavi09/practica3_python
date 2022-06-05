@@ -26,12 +26,16 @@ user = environ.get('DB_USER')
 password = environ.get('DB_PASSWORD')
 
 # se conecta a la base de datos, creando una función para reutilizar esta base de datos en varias funciones
+
+
 def getConnection():
     connection = connect(host=host, port=port, dbname=dbname,
                          user=user, password=password)
     return connection
 
 # se agregan las rutas de la api para manejar los datos
+
+
 @app.get('/api/users')
 def getUsers():
     connection = getConnection()
@@ -107,9 +111,12 @@ def updateUsers(id):
     return jsonify(usuarioModificado)
 
 # se agrega la ruta principal de la aplicación para el frontend
+
+
 @app.get('/')
 def home():
     return render_template('main.html')
+
 
 # se inicializa la aplicación
 if __name__ == '__main__':
